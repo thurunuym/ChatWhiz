@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoutes from './routes/auth.route.js';
+import messageRoutes from './routes/message.route.js';
 import {connectDB} from './lib/db.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
@@ -22,10 +23,12 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
 
+app.use('/api/message', messageRoutes);
 
 app.listen(PORT, () => {
     console.log("Server is running on port: " + PORT);
     connectDB(); 
     //This connects to the MongoDB database using the connection string defined in your .env file.	
     //This starts your server and tells it to listen for incoming HTTP requests on port 5001.
+
 });
