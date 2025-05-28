@@ -1,18 +1,20 @@
 import express from "express";
 
 const router = express.Router();
+import { signup , login,logout,updateProfile, checkAuth} from '../controllers/auth.controller.js';
+import { protectRoute } from "../middleware/auth.middleware.js";
 
-router.get("/signup", (req,res) => {
-    res.send("signup route");
-});
+router.post('/signup', signup);
 
-router.get("/login", (req,res) => {
-    res.send("login route");
-});
 
-router.get("/logout", (req,res) => {
-    res.send("logout route");
-});
+router.post("/login", login);
+
+router.post("/logout", logout);
+
+//Only users who are authenticated (i.e., have a valid JWT cookie) can access these routes.
+router.put("/update-profile",protectRoute,updateProfile);
+
+router.get("/check",protectRoute,checkAuth)
 
 
 export default router;
