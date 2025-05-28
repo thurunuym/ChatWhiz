@@ -11,8 +11,10 @@ router.post("/login", login);
 
 router.post("/logout", logout);
 
+//Only users who are authenticated (i.e., have a valid JWT cookie) can access these routes.
 router.put("/update-profile",protectRoute,updateProfile);
 
 router.get("/check",protectRoute,checkAuth)
+
 
 export default router;
