@@ -26,7 +26,10 @@ export const protectRoute = async (req , res , next) => {
         }
 
         req.user = user
+        //If a user was found, this line attaches the user object to the req (request) object, so that the next middleware or route handler can access it.
+
         next()
+        //next is the next function in route
 
         //The req object is passed through the entire middleware and route handler chain for a single request.
         //Attaching user to req (e.g., req.user = user;) allows all subsequent middleware and route handlers to access the authenticated user information for that request

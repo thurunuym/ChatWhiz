@@ -4,7 +4,7 @@ import messageRoutes from './routes/message.route.js';
 import {connectDB} from './lib/db.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-
+import cors from 'cors';
 
 dotenv.config();
 
@@ -19,6 +19,13 @@ app.use(express.json());
 app.use(cookieParser());
 //Express middleware that parses cookies attached to the client’s HTTP requests.
 //It makes it easy to read, set, and manage cookies in your Express app.
+
+app.use(
+    cors({
+        origin: "http://localhost:5173", // Replace with your frontend URL
+        credentials: true, // Allows cookies to be sent with requests
+    })
+)
 
 app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
