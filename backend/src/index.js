@@ -22,10 +22,10 @@ app.use(cookieParser());
 
 app.use(
     cors({
-        origin: "http://localhost:5173", // Replace with your frontend URL
+        origin: "http://localhost:5173", 
         credentials: true, // Allows cookies to be sent with requests
     })
-)
+);
 
 app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
