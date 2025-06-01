@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { MessageSquare, User, Mail, Lock, EyeOff, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,12 +14,26 @@ const SignUpPage = () => {
     password: "",
   });
 
-  const { signUp, isSigningUp } = useAuthStore();
+  const { signup, isSigningUp } = useAuthStore();
 
-  const validateForm = () => {};
+  const validateForm = () => {
+    if (!formData.fullName.trim()) return toast.error("Full name is required");
+    if (!formData.email.trim()) return toast.error("Email is required");
+    if (!/\S+@\S+\.\S+/.test(formData.email))
+      return toast.error("Invalid email format");
+    if (!formData.password.trim()) return toast.error("Password is required");
+    if (formData.password.length < 6)
+      return toast.error("Password must be at least 6 characters long");
+
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const success = validateForm();
+
+    if (success == true) signup(formData);
   };
 
   return (
@@ -48,21 +64,20 @@ const SignUpPage = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="size-5 text-base-content/40 z-1"/>
+                  <User className="size-5 text-base-content/40 z-1" />
                 </div>
-              
 
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                className={`input input-bordered w-full pl-10 `}
-                value={formData.fullName}
-                onChange={(e) =>
-                  setFormData({ ...formData, fullName: e.target.value })
-                }
-                required
-              />
-            </div>
+                <input
+                  type="text"
+                  placeholder="Enter your full name"
+                  className={`input input-bordered w-full pl-10 `}
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  
+                />
+              </div>
             </div>
 
             <div className="form-control">
@@ -73,19 +88,18 @@ const SignUpPage = () => {
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail className="size-5 text-base-content/40 z-1" />
                 </div>
-              
 
-              <input
-                type="email"
-                placeholder="Enter your Email"
-                className={`input input-bordered w-full pl-10 `}
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                required
-              />
-            </div>
+                <input
+                  type="text"
+                  placeholder="Enter your Email"
+                  className={`input input-bordered w-full pl-10 `}
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  
+                />
+              </div>
             </div>
 
             <div className="form-control">
@@ -105,7 +119,7 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  required
+                 
                 />
 
                 <button
@@ -122,28 +136,30 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary w-full" disabled={isSigningUp}>
-                  {
-                    isSigningUp ? (
-                      <>
-                      <Loader2 className="size-5 animate-spin"/>
-                      Loading...
-                      </>
-                    ) : (
-                        "Create Account"
-                    )
-                  }
-            </button>    
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={isSigningUp}
+            >
+              {isSigningUp ? (
+                <>
+                  <Loader2 className="size-5 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                "Create Account"
+              )}
+            </button>
           </form>
 
-        <div className="text-center">
-                  <p className="text-base-content/60">Already have an account?{" "}
-                  <Link to="/login" className="link link-primary">
-                  Sign in
-                  </Link>
-                  </p>
-        </div>
-
+          <div className="text-center">
+            <p className="text-base-content/60">
+              Already have an account?{" "}
+              <Link to="/login" className="link link-primary">
+                Sign in
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
