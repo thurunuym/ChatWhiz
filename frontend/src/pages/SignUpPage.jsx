@@ -1,10 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { MessageSquare, User, Mail, Lock, EyeOff, Loader2 } from "lucide-react";
+import {
+  MessageSquare,
+  User,
+  Mail,
+  Lock,
+  EyeOff,
+  Eye,
+  Loader2,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,8 +35,18 @@ const SignUpPage = () => {
     return true;
   };
 
+  // @: The "@" symbol, required in all emails.
+
+  // \S+: Again, one or more non-whitespace characters (the domain name).
+
+  // \.: A dot (".") character, required before the domain extension.
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //When you use e.preventDefault(); in a form’s submit handler,
+    // it stops the browser’s default action for that event—which,
+    // for a form, is to send the form data and reload (refresh) the page
 
     const success = validateForm();
 
@@ -75,7 +92,6 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
                   }
-                  
                 />
               </div>
             </div>
@@ -97,7 +113,6 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  
                 />
               </div>
             </div>
@@ -119,7 +134,6 @@ const SignUpPage = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                 
                 />
 
                 <button
@@ -130,7 +144,7 @@ const SignUpPage = () => {
                   {showPassword ? (
                     <EyeOff className="size-5 text-base-content/40" />
                   ) : (
-                    <EyeOff className="size-5 text-base-content/40" />
+                    <Eye className="size-5 text-base-content/40" />
                   )}
                 </button>
               </div>

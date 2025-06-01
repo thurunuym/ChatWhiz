@@ -1,6 +1,7 @@
 import {create} from 'zustand'
 import {axiosInstance} from "../lib/axios";
 import toast from 'react-hot-toast';
+import { data } from 'react-router-dom';
 
 //create a state store.
 
@@ -46,7 +47,27 @@ export const useAuthStore = create((set) => ({
             console.error("Error in logout:", error);
             toast.error(error.response.data.message);
         }
+    },
+
+    login : async(data) => {
+        try {
+            set({isLoggingIn: true});
+            const res = await axiosInstance.post("/auth/login", data);
+            set({authUser: res.data});
+            toast.success("Logged in successfully!");
+            
+        } catch (error) {
+            console.error("Error in login:", error);
+            toast.error(error.response.data.message);
+            
+        }finally{
+                set({isLoggingIn: false})
+
+        } 
     }
        
 
 }));
+
+
+//authUser holds the current logged-in user's information after a successful login.
