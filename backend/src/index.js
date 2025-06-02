@@ -13,12 +13,20 @@ const app = express();
 
 const PORT = process.env.PORT 
 
+
+// Increase payload size limit 
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+
 app.use(express.json());
 //This middleware allows your server to automatically parse JSON data sent in HTTP request bodies (like from POST requests).
 
 app.use(cookieParser());
 //Express middleware that parses cookies attached to the client’s HTTP requests.
 //It makes it easy to read, set, and manage cookies in your Express app.
+
+
 
 app.use(
     cors({
