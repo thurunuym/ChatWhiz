@@ -38,7 +38,7 @@ app.use(
 app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
 
-app.use('/api/message', messageRoutes);
+app.use('/api/messages', messageRoutes);
 
 app.listen(PORT, () => {
     console.log("Server is running on port: " + PORT);
