@@ -8,7 +8,7 @@ export const getUsersForSidebar = async (req,res) => {
 try{
 
     const loggedInUserId = req.user._id;
-    const filteredUsers = await User.find({_id: {$ne: loggedInUserId}});
+    const filteredUsers = await User.find({_id: {$ne: loggedInUserId}});  //not equal to loggedInUserId
     res.status(200).json(filteredUsers);
 
 }catch(error){
@@ -23,6 +23,8 @@ export const getMessages = async (req,res) => {
     try {
         const {id:userToChatId} =req.params
         const myId = req.user._id;
+
+//or is used to match documents that satisfy at least one of several conditions.
 
         const message = await Message.find({
             $or:[
