@@ -2,7 +2,7 @@ import {useRef , useState}  from 'react'
 import { useChatStore } from '../store/useChatStore';
 import { X,Send } from 'lucide-react';
 import { Image } from 'lucide-react';
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 
 const MessageInput = () => {
@@ -17,6 +17,12 @@ const MessageInput = () => {
       toast.error("Please select an image file");
       return;
     }
+
+    const reader = new FileReader();
+    reader.onloadend = () =>{
+      setImagePreview (reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   //checks if the file's MIME type begins with "image/", which is true for all standard image formats.
@@ -87,7 +93,8 @@ const MessageInput = () => {
         type='button'
         className={`hidden sm:flex btn btn-circle
         ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
-        onClick={()=> fileInputRef.current.click()}
+        onClick={()=> fileInputRef.current?.click()}
+        //This programmatically triggers a click on the hidden file input.
         >
           <Image size={20} />
         </button>
