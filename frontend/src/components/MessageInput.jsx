@@ -1,7 +1,8 @@
 import {useRef , useState}  from 'react'
 import { useChatStore } from '../store/useChatStore';
-import { X } from 'lucide-react';
+import { X,Send } from 'lucide-react';
 import { Image } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 
 const MessageInput = () => {
@@ -10,11 +11,42 @@ const MessageInput = () => {
   const fileInputRef = useRef(null);
   const {sendMessage, selectedUser} = useChatStore();
 
-  const handleImageChange = (e) => {};
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if(!file.type.startsWith("image/")){
+      toast.error("Please select an image file");
+      return;
+    }
+  };
 
-  const removeImage = () => {};
+  //checks if the file's MIME type begins with "image/", which is true for all standard image formats.
+  //"image/png", "image/jpeg")
 
-  const handleSendMessage = async(e) => {};
+
+  const removeImage = () => {
+    setImagePreview(null);
+    if(fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleSendMessage = async(e) => {
+    e.preventDefault();
+    if(!text.trim() && !imagePreview) return;
+
+    try {
+      await sendMessage({
+        text: text.trim(),
+        image: imagePreview
+      });
+
+      setText("");
+      setImagePreview(null);
+      if(fileInputRef.current)
+        fileInputRef.current.value = "";
+      
+    } catch (error) {
+      console.error("Failed to send message :", error);
+    }
+  };
 
   return(
     <div className='p-4 w-full'>
@@ -60,6 +92,14 @@ const MessageInput = () => {
           <Image size={20} />
         </button>
         </div>
+
+          <button
+          type='submit'
+          className='btn btn-sm btn-circle'
+          disabled={!text.trim() && !imagePreview}>
+            <Send size={22}/>
+          </button>
+
       </form>
       
     </div>
