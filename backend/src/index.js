@@ -13,6 +13,12 @@ const app = express();
 
 const PORT = process.env.PORT 
 
+
+// Increase payload size limit 
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
+
+
 app.use(express.json());
 //This middleware allows your server to automatically parse JSON data sent in HTTP request bodies (like from POST requests).
 
@@ -20,17 +26,19 @@ app.use(cookieParser());
 //Express middleware that parses cookies attached to the client’s HTTP requests.
 //It makes it easy to read, set, and manage cookies in your Express app.
 
+
+
 app.use(
     cors({
-        origin: "http://localhost:5173", // Replace with your frontend URL
+        origin: "http://localhost:5173", 
         credentials: true, // Allows cookies to be sent with requests
     })
-)
+);
 
 app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
 
-app.use('/api/message', messageRoutes);
+app.use('/api/messages', messageRoutes);
 
 app.listen(PORT, () => {
     console.log("Server is running on port: " + PORT);

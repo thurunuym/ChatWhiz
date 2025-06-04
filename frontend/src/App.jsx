@@ -8,6 +8,7 @@ import { Routes, Route ,Navigate} from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore';
 import { useEffect } from 'react';
 import {Loader} from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 
 
 const App = () => {
@@ -43,9 +44,12 @@ useEffect(() => {
         <Route path="/" element={authUser ? <HomePage/> : <Navigate to="/login"/>}/>
         <Route path="/login" element={!authUser ? <LoginPage/> : <Navigate to="/"/>} />
         <Route path="/signup" element={!authUser ? <SignupPage/> : <Navigate to="/"/>} />
+        
         <Route path="/profile" element={authUser ? <ProfilePage/> : <Navigate to="/login"/>} />
         <Route path="/settings" element={<SettingsPage/>} />
       </Routes>
+
+      <Toaster/>
     </>
   )
 }
