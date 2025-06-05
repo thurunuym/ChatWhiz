@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useChatStore } from "../store/useChatStore";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
+import formatMessageTime from "../lib/lib";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 
@@ -56,7 +57,7 @@ const ChatContainer = () => {
 
             <div className="chat-header mb-1">
               <time className="text-xs opacity-50 ml-1">
-                {(message.createdAt)}
+                {(formatMessageTime(message.createdAt))}
               </time>
             </div>
 
@@ -65,7 +66,7 @@ const ChatContainer = () => {
                 <img
                   src={message.image}
                   alt="Attachement"
-                  className="sm:max-w[200px] rounded-md mb-2"
+                  className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
               {message.text && <p>{message.text}</p>}
