@@ -27,13 +27,14 @@ export const signup =async (req , res) => {
             password: hashedPassword
         })
 
+//A salt is a random string that is added to a password before it is hashed.
+//Its purpose is to make each password hash unique, even if two users have the same password.
+
         if(newUser){
             //jwt
-
             await newUser.save();
             generateToken(newUser._id, res);
-            
-            
+                        
             res.status(201).json({
                 _id: newUser._id,
                 email: newUser.email,

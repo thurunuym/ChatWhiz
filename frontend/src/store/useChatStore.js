@@ -47,5 +47,6 @@ export const useChatStore = create((set,get) => ({
     },
 
     setSelectedUser: (selectedUser) => set({selectedUser})
-
+    
+//Used to read the current state inside the store functions in zustand.
 }))

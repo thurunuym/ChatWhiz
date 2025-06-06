@@ -7,7 +7,7 @@ import formatMessageTime from "../lib/lib";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 
-const ChatContainer = () => {
+const ChatContainer = (req) => {
   const {authUser} = useAuthStore();
   const { messages, getMessages, isMessagesLoading, selectedUser } =
     useChatStore();

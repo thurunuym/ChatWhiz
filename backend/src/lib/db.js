@@ -9,3 +9,5 @@ export const connectDB = async () => {
         console.log("MongoDB connection failed:", error.message);        // Exit the process with failure
     }
 }
+
+//Mongoose is a JavaScript library that provides a schema-based solution for modeling application data in MongoDB (a NoSQL database)
