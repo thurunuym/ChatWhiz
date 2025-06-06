@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
-import logo from "../../public/logo_chatwhiz.png";
+import logo from "../assets/logo_chatwhiz.png";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
