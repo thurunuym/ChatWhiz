@@ -13,19 +13,22 @@ import { Toaster } from 'react-hot-toast';
 
 const App = () => {
 
-  const {authUser,checkAuth,isCheckingAuth} = useAuthStore();
+  const {authUser,checkAuth,isCheckingAuth , onlineUsers} = useAuthStore();
 //This line uses JavaScript object destructuring to extract three 
 // values—authUser, checkAuth, and isCheckingAuth—from the object 
-// returned by the useAuthStore() hook.
- 
+// returned by the u
+
+console.log({onlineUsers});
+
 useEffect(() => {
     checkAuth();
   } , [checkAuth]
-
   );
-
   //This useEffect makes your app check if the user is authenticated as soon as the app loads.
+ //(You're not calling checkAuth() again — you're just reading the updated value of authUser after it's set.)
+  // ?? if use authUser instead checkAuth , This will create an infinite loop or unnecessary requests to your backend.
 
+  
   console.log({authUser});
 
   if(isCheckingAuth && !authUser) return (

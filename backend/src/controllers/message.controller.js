@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
+import { io , getReceiverSocketId } from "../lib/socket.js"; 
 
 
 export const getUsersForSidebar = async (req,res) => {
@@ -19,9 +20,11 @@ try{
 }
 
 
+
+
 export const getMessages = async (req,res) => {
     try {
-        const {id:userToChatId} =req.params
+        const {id:userToChatId} =req.params   // It represents the user you’re chatting with
         const myId = req.user._id;
 
 //or is used to match documents that satisfy at least one of several conditions.
@@ -43,7 +46,7 @@ export const getMessages = async (req,res) => {
 
 export const sendMessage = async (req,res) => {
     try {
-        const {text, image} = req.body;
+        const {text, image} = req.body;  // passed as messageData in frontEnd
         const {id: receiverId} = req.params;
         const senderId = req.user._id;
 
@@ -63,9 +66,16 @@ export const sendMessage = async (req,res) => {
         });
 
         await newMessage.save();
+
         res.status(200).json(newMessage);
 
-        // to do : realtime with socket.io 
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage",newMessage);
+        }
+        // realtime with socket.io 
+
 
     } catch (error) {
         console.log("Error in sendMessage controller:" , error.message);

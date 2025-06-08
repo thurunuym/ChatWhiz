@@ -25,10 +25,12 @@ const userSchema = new mongoose.Schema(
         },
     },
 
-{timestamps: true}
+{timestamps: true}   //This is a schema option that automatically adds:createdAt,updatedAt
+
 );
 
 const User = mongoose.model("User", userSchema);
 //Mongoose automatically pluralizes and lowercases this name to create the actual collection name in MongoDB.
+//(Mongoose lowercases and pluralizes the model name.)
 
 export default User;                    

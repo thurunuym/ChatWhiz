@@ -1,17 +1,23 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
+
+//protectRoute is an Express middleware function used to protect certain routes from being accessed by unauthenticated users. 
+
 export const protectRoute = async (req , res , next) => {
     try{
-        const token = req.cookies.jwt;
+        const token = req.cookies.jwtCookie;
         //Checks for a JWT in the jwt cookie of the incoming request.
+        //Tries to read the JWT from the cookie named jwtCookie.
 
 
         if(!token){
             return res.status(401).json({message: "Unauthorized - No Token Provided"});
         }
 
-        const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY)
+        const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY)    //Uses the secret key to verify if the token is valid.
+
+
 
         if(!decoded){
             return res.status(401).json({message: "Unauthorized - Invalid Token"});

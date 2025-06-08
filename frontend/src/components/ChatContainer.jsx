@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import { useChatStore } from "../store/useChatStore";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
@@ -7,18 +7,25 @@ import formatMessageTime from "../lib/lib";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 
-const ChatContainer = () => {
+
+const ChatContainer = (req) => {
+  const messageEndRef = useRef(null);
+
   const {authUser} = useAuthStore();
-  const { messages, getMessages, isMessagesLoading, selectedUser } =
+  const { messages, getMessages, isMessagesLoading, selectedUser , subscribeToMessages ,unsubscribeFromMessages } =
     useChatStore();
 
   useEffect(() => {
     getMessages(selectedUser?._id);
-  }, [selectedUser._id, getMessages]);
+    subscribeToMessages();
 
-  // useEffect(() => {
-  //   if (messageEndref.current.scrollIntoView) ({ behavior: "smooth" });
-  // }, [messages]);
+    return () => unsubscribeFromMessages();
+  }, [selectedUser._id, getMessages,subscribeToMessages,unsubscribeFromMessages]);
+
+  useEffect(() => {
+   if(messageEndRef.current && messages){
+    messageEndRef.current.scrollIntoView({behavior:"smooth"});
+   } }, [messages]);
 
   if (isMessagesLoading)
     return (
@@ -39,6 +46,7 @@ const ChatContainer = () => {
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
+           ref={messageEndRef}
             key={message._id}
             // ref={messageEndRef}
           >
