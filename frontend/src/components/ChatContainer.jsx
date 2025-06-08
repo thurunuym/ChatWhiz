@@ -9,12 +9,15 @@ import { useAuthStore } from "../store/useAuthStore";
 
 const ChatContainer = (req) => {
   const {authUser} = useAuthStore();
-  const { messages, getMessages, isMessagesLoading, selectedUser } =
+  const { messages, getMessages, isMessagesLoading, selectedUser , subscribeToMessages ,unsubscribeFromMessages } =
     useChatStore();
 
   useEffect(() => {
     getMessages(selectedUser?._id);
-  }, [selectedUser._id, getMessages]);
+    subscribeToMessages();
+
+    return () => unsubscribeFromMessages();
+  }, [selectedUser._id, getMessages,subscribeToMessages,unsubscribeFromMessages]);
 
   // useEffect(() => {
   //   if (messageEndref.current.scrollIntoView) ({ behavior: "smooth" });
