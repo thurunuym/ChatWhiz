@@ -6,7 +6,8 @@ import { io } from "socket.io-client"
 
 //create a state store.
 
- const BASE_URL = "http://localhost:5001"
+ const BASE_URL= import.meta.env.MODE === "development" ? "http://localhost:5001/api" : "/"
+
 
 export const useAuthStore = create((set,get) => ({
     authUser: null,
