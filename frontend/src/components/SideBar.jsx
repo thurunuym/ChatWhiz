@@ -4,21 +4,22 @@ import { useEffect } from "react";
 import SidebarSkeleton from "./skeletons/sidebarSkeleton";
 import { Users } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } =
     useChatStore();
 
-  const onlineUsers = [];
+  const {onlineUsers} = useAuthStore();
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
-  // const filteredUsers = showOnlineOnly
-  // ? users.filter((user) => onlineUsers.includes(user._id))
-  // : users;
+  const filteredUsers = showOnlineOnly
+   ? users.filter((user) => onlineUsers.includes(user._id))
+   : users;
 
   if (isUsersLoading) return <SidebarSkeleton />;
 
@@ -52,12 +53,12 @@ const Sidebar = () => {
                   alt={user.fullname}
                   className="size-12 object-cover rounded-full"
                 />
-                {/* {onlineUsers.includes(user._id) && (
+                {onlineUsers.includes(user._id) && (
                 <span
                   className="absolute bottom-0 right-0 size-3 bg-green-500 
                   rounded-full ring-2 ring-zinc-900"
                 />
-              )} */}
+              )}
               </div>
 
               {/* User info - only visible on larger screens */}
