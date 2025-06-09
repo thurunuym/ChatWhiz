@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import {app , server} from "./lib/socket.js";
 
+import path from "path";
+
 dotenv.config();
  
 //const app = express();    
@@ -15,13 +17,15 @@ dotenv.config();
 
 const PORT = process.env.PORT 
 
+const _dirname = path.resolve();
+
 
 // Increase payload size limit 
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
 
-app.use(express.json());
+//app.use(express.json());
 //This middleware allows your server to automatically parse JSON data sent in HTTP request bodies (like from POST requests).
 
 app.use(cookieParser());
@@ -41,6 +45,16 @@ app.use('/api/auth', authRoutes);
 //If you define router.post('/login') in authRoutes, the real endpoint is /api/auth/login.
 
 app.use('/api/messages', messageRoutes);
+
+
+if(process.env.NODE_ENV==="production"){
+    app.use(express.static(path.join(_dirname, "../frontend/dist")));
+
+    app.get("*", (req,res)=> {
+        res.sendFile(path.join(_dirname,"../frontend", "dist" , "index.html"))
+    });
+}
+
 
 server.listen(PORT, () => {
     console.log("Server is running on port: " + PORT);
