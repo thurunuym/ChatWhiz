@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { LogOut, MessageSquare, Settings, User , CircleChevronLeft } from "lucide-react";
 import logo from "../assets/logo_chatwhiz.png";
 
 const Navbar = () => {
+
   const { logout, authUser } = useAuthStore();
+  const location = useLocation();
+  const profilePage = location.pathname === "/profile";
+
 
   return (
     <header
@@ -33,10 +37,22 @@ const Navbar = () => {
 
             {authUser && (
               <>
+
+              {profilePage ? (
+                <Link to={"/"} className={`btn btn-sm gap-2 bg-[#0d0b25]`}>
+                  <CircleChevronLeft className="size-5" />
+                  <span className="hidden sm:inline">Back</span>
+                </Link>) :
+                (
                 <Link to={"/profile"} className={`btn btn-sm gap-2 bg-[#0d0b25]`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
+                ) 
+
+              }
+
+                
 
                 <button className="flex gap-2 items-center" onClick={logout}>
                   <LogOut className="size-5" />
