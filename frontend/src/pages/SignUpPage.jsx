@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import left_gif from "../assets/left.gif"
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -54,19 +55,28 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
-      {/*left-side*/}
-      <div className="flex flex-col justify-center items-center p-8 sm:p-12">
-        <div className="w-full max-w-md space-y-8">
+    <div className="min-h-screen grid lg:grid-cols-2 justify-center items-center pt-20">
+
+
+{/* left */}
+
+<div>
+<img src={left_gif} alt="left_gif" className="w-lg ml-35 p-2.5"/>
+
+</div>
+
+      {/*Right-side*/}
+      <div className="flex flex-col justify-center items-center sm:p-12">
+        <div className="w-full max-w-md space-y-8 bg-[#010212] rounded-xl shadow-lg p-12">
           {/* Form */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 ">
             <div className="flex flex-col items-center gap-2 group">
-              <div
+              {/* <div
                 className="size-12 rounded-xl bg-primary/10 flex items-center justify-center 
                             group-hover:bg-primary/20 transition-colors"
               >
                 <MessageSquare className="size-6 text-primary" />
-              </div>
+              </div> */}
               <h1 className="text-2xl font-bold mt-2">Create Account</h1>
               <p className="text-base-content/60">
                 Get Started with your free account
@@ -176,6 +186,8 @@ const SignUpPage = () => {
           </div>
         </div>
       </div>
+
+
     </div>
   );
 };
