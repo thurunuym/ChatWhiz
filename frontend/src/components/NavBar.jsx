@@ -19,8 +19,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Link
+          <div className="flex items-center gap-10">
+            {/* <Link
               to={"/settings"}
               className={`
               btn btn-sm gap-2 transition-colors
@@ -29,11 +29,11 @@ const Navbar = () => {
             >
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">Settings</span>
-            </Link>
+            </Link> */}
 
             {authUser && (
               <>
-                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
+                <Link to={"/profile"} className={`btn btn-sm gap-2 bg-[#0d0b25]`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>

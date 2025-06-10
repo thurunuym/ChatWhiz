@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
+import qr from "../assets/qr-code.png";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,12 +25,12 @@ const LoginPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
-              <div
+              {/* <div
                 className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
               transition-colors"
               >
                 <MessageSquare className="w-6 h-6 text-primary" />
-              </div>
+              </div> */}
               <h1 className="text-2xl font-bold mt-2">Welcome Back</h1>
               <p className="text-base-content/60">Sign in to your account</p>
             </div>
@@ -107,7 +108,19 @@ const LoginPage = () => {
         </div>
       </div>
 
-    
+    <div className="hidden lg:flex flex-col justify-center items-center bg-base-200 p-8 text-center">
+        <div className="max-w-xs">
+          <h2 className="text-lg font-semibold mb-4">Scan Me</h2>
+          <img
+            src={qr}
+            alt="QR Code"
+            className="w-48 h-48 mx-auto border rounded-lg shadow-md"
+          />
+          <p className="text-sm text-base-content/60 mt-4">
+            Use your mobile to scan this QR code and log in instantly.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
