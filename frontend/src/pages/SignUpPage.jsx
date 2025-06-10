@@ -60,14 +60,13 @@ const SignUpPage = () => {
 
 {/* left */}
 
-<div>
-<img src={left_gif} alt="left_gif" className="w-lg ml-35 p-2.5"/>
-
+<div className="hidden lg:flex" style={{ marginLeft: "14%" }}>
+  <img src={left_gif} alt="left_gif" className="w-xl p-2.5" />
 </div>
 
-      {/*Right-side*/}
+{/*Right-side*/}
       <div className="flex flex-col justify-center items-center sm:p-12">
-        <div className="w-full max-w-md space-y-8 bg-[#010212] rounded-xl shadow-lg p-12">
+        <div className="w-full max-w-xl space-y-8 bg-[#010212] rounded-xl shadow-lg p-12">
           {/* Form */}
           <div className="text-center mb-8 ">
             <div className="flex flex-col items-center gap-2 group">

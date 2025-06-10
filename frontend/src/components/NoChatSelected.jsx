@@ -7,7 +7,8 @@ return (
     <img
       src={logo}
       alt="No chats Selected"
-      className="absolute  w-lg"
+      className="absolute w-lg opacity-40"
+      style={{ pointerEvents: "none" }}
     />
   </div>
 )
