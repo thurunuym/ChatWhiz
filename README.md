@@ -4,11 +4,19 @@
 ---
 
 ## ◻️ Tech Stack
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Zustand](https://img.shields.io/badge/Zustand-000?style=for-the-badge)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000?style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000?style=for-the-badge)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socket.io&logoColor=white)
+
 - **Frontend:** React.js with Zustand, Tailwind CSS  
 - **Backend:** Node.js, Express.js, MongoDB  
 - **Authentication:** JWT  
 - **Realtime Communication:** WebSocket (via Socket.IO)  
-
 ---
 
 ## ◻️ Features
@@ -27,26 +35,7 @@ Try it instantly with the following accounts:
 ---
 
 ## ◻️ Live Demo
-🔗 [Check it out here]([https://lnkd.in/gAPgfNeX](https://chatwhiz-kpvi.onrender.com/))  
+[🌐 Click here to try Chatwhiz](https://chatwhiz-kpvi.onrender.com/)
 
 ---
 
-## ◻️ Screenshots
-*Add some screenshots or GIFs of your app here for a better visual impression.*  
-
----
-
-## ◻️ Installation (Optional for Local Setup)
-```bash
-# Clone the repository
-git clone https://github.com/thurunuym/ChatWhiz.git
-
-# Navigate to frontend
-cd frontend
-npm install
-npm start
-
-# Navigate to backend
-cd backend
-npm install
-npm run dev
