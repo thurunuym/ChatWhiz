@@ -1,4 +1,4 @@
-# Chatwhiz 🚀
+# Chatwhiz 
 **A Real-Time Chat Application** built with **performance, scalability, and simplicity** in mind.
 
 ---
