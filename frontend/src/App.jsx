@@ -25,7 +25,7 @@ useEffect(() => {
   } , [checkAuth]
   );
   //This useEffect makes your app check if the user is authenticated as soon as the app loads.
- //(You're not calling checkAuth() again — you're just reading the updated value of authUser after it's set.)
+ //not calling checkAuth() again — just reading the updated value of authUser after it's set.)
   // ?? if use authUser instead checkAuth , This will create an infinite loop or unnecessary requests to your backend.
 
   

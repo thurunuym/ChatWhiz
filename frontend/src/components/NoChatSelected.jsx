@@ -14,4 +14,4 @@ return (
 )
 }
 
-export default NoChatSelected
+export default NoChatSelected;

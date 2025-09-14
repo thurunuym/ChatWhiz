@@ -48,7 +48,6 @@ const ChatContainer = (req) => {
             }`}
            ref={messageEndRef}
             key={message._id}
-            // ref={messageEndRef}
           >
             <div className="chat-image avatar">
               <div className="size-10 rounded-full border">
