@@ -27,6 +27,38 @@
 
 ---
 
+## ◻️ Run Locally
+Clone the project
+```bash
+  https://github.com/thurunuym/ChatWhiz.git
+```
+
+Configure environment variables
+(.env.example is provided)
+```bash
+MONGODB_URI=your_mongodb_connection_string
+PORT=5001
+JWT_SECRET_KEY=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_cloudinary_key
+CLOUDINARY_API_SECRET=your_cloudinary_secret
+NODE_ENV=development
+```
+
+Install dependencies
+
+```bash
+  npm run build
+  
+```
+
+Start the development server
+```bash
+  npm run dev --prefix frontend
+  
+```
+---
+
 ## ◻️ Sample Logins
 Try it instantly with the following accounts:  
 - `test1@gmail.com / 123456`  
