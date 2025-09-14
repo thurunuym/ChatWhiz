@@ -108,7 +108,7 @@ const LoginPage = () => {
         </div>
       </div>
 
-    <div className="hidden lg:flex flex-col justify-center items-center bg-base-200 p-8 text-center">
+    <div className="hidden lg:flex flex-col justify-center items-center bg-[#e3075f] p-8 text-center">
         <div className="max-w-xs">
           <h2 className="text-lg font-semibold mb-4">Scan Me</h2>
           <img
