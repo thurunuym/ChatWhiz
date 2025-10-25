@@ -52,9 +52,9 @@ Install dependencies
   
 ```
 
-Start the development server
+Start the application
 ```bash
-  npm run dev --prefix frontend
+  npm run dev 
   
 ```
 ---
